@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pomodoro/components/cronometer.dart';
 import 'package:pomodoro/components/time_entry.dart';
 import 'package:pomodoro/store/pomodoro.store.dart';
@@ -16,11 +17,24 @@ class HomeView extends StatelessWidget {
         const Expanded(child: Cronometer()),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 24),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            TimeEntry(value: store.workTime, title: 'Work'),
-            TimeEntry(value: store.restTime, title: 'Rest'),
-          ]),
+          child: Observer(
+            builder: (_) => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TimeEntry(
+                    value: store.workTime,
+                    title: 'Work',
+                    increment: store.incrementWorkTime,
+                    decrement: store.decrementWorkTime,
+                  ),
+                  TimeEntry(
+                    value: store.restTime,
+                    title: 'Rest',
+                    increment: store.incrementRestTime,
+                    decrement: store.decrementRestTime,
+                  ),
+                ]),
+          ),
         ),
       ]),
     );
