@@ -24,14 +24,22 @@ class HomeView extends StatelessWidget {
                   TimeEntry(
                     value: store.workTime,
                     title: 'Work',
-                    increment: store.incrementWorkTime,
-                    decrement: store.decrementWorkTime,
+                    increment: store.isStarted && store.isWorking()
+                        ? null
+                        : store.incrementWorkTime,
+                    decrement: store.isStarted && store.isWorking()
+                        ? null
+                        : store.decrementWorkTime,
                   ),
                   TimeEntry(
                     value: store.restTime,
                     title: 'Rest',
-                    increment: store.incrementRestTime,
-                    decrement: store.decrementRestTime,
+                    increment: store.isStarted && store.isResting()
+                        ? null
+                        : store.incrementRestTime,
+                    decrement: store.isStarted && store.isResting()
+                        ? null
+                        : store.decrementRestTime,
                   ),
                 ]),
           ),
