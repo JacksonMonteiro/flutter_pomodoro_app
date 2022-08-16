@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pomodoro/store/pomodoro.store.dart';
 import 'package:provider/provider.dart';
 
@@ -32,36 +33,38 @@ class TimeEntry extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: increment,
-              style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(10),
-                  primary: store.isWorking() ? Colors.red : Colors.green),
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
+        Observer(
+          builder: (_) => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: increment,
+                style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(10),
+                    primary: store.isWorking() ? Colors.red : Colors.green),
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            Text(
-              '$value min',
-              style: const TextStyle(fontSize: 18),
-            ),
-            ElevatedButton(
-              onPressed: decrement,
-              style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(10),
-                  primary: store.isWorking() ? Colors.red : Colors.green),
-              child: const Icon(
-                Icons.remove,
-                color: Colors.white,
+              Text(
+                '$value min',
+                style: const TextStyle(fontSize: 18),
               ),
-            ),
-          ],
+              ElevatedButton(
+                onPressed: decrement,
+                style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(10),
+                    primary: store.isWorking() ? Colors.red : Colors.green),
+                child: const Icon(
+                  Icons.remove,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

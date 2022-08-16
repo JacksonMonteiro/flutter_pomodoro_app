@@ -7,13 +7,13 @@ part 'pomodoro.store.g.dart';
 
 abstract class _PomodoroStore with Store {
   @observable
-  int workTime = 2;
+  int workTime = 25;
 
   @observable
-  int restTime = 1;
+  int restTime = 5;
 
   @observable
-  int minutes = 2;
+  int minutes = 25;
 
   @observable
   int seconds = 0;
