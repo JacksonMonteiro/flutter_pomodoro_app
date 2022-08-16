@@ -7,10 +7,12 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: const [
-        Text('Pomodoro'),
-        TimeEntry(value: 25, title: 'Work'),
-        TimeEntry(value: 5, title: 'Rest'),
+      body: Column(children: [
+        const Text('Pomodoro'),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: const [
+          TimeEntry(value: 25, title: 'Work'),
+          TimeEntry(value: 5, title: 'Rest'),
+        ]),
       ]),
     );
   }
